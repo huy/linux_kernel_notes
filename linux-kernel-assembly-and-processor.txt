@@ -1,0 +1,33 @@
+﻿## assembly language and how processor work
+
+
+Assuming that segment descriptor for code, data, stack are stored in cs, ds and respectively ss registers.
+
+
+Instruction pointer
+1. value is in EIP register (RIP for 64 bits)
+2. processor will execute an instruction stored in the address specified by the EIP
+3. jump loc1 will change EIP to loc1
+
+
+Stack pointer for top address of the stack
+1. value is in ESP register (RSP for 64 bits)
+2. push/pop instruction will store/get a value from an address specified by ESP and decrease/increase ESP by a coresponding size
+3. stack grows from higher to lower memory address
+4. Kernel can directly modify ESP during context switch
+
+
+Stack base pointer for holding address of current stack frame, a range of stack holding passed parameters, return address and local parameters
+1. value is in EBP register (RBP for 64 bits)
+2. EBP contains address in stack where return address is stored.
+
+
+
+
+call loc1 will push memory location after the instruction (EIP content) into current stack (memory location specified by ESP register) and jump to loc1.
+ret will change EIP to a value in an address specified by ESP and increase ESP by a corresponding size
+
+
+References
+1. http://www.intel.com/Assets/PDF/manual/253665.pdf
+2. http://sig9.com/articles/att-syntax
