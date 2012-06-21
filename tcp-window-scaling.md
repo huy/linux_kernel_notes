@@ -1,7 +1,12 @@
 # TCP Window Scaling if one of side does not support window scaling
 
-Every TCP packet includes, in the header, a "window" field which specifies how much data the system which sent the packet is willing and able to receive from the other end. The window is the flow control mechanism used by TCP; it controls the maximum amount of data which can be "in flight" between two communicating systems and keeps one side from overwhelming the other with data.
-In order to increase receive window size of 16 bits, the TCP Window Scaling was introduced in RFC 1323. This is an option of TCP header. The scaling factor is 1 byte but standard mandate that we can use only up to 14.
+**Overview**
+
+Every TCP packet includes, in the header, a "window" field which specifies how much data the system which sent the packet is willing and able to receive from the other end. 
+The window is the flow control mechanism used by TCP; it controls the maximum amount of data which can be "in flight" between two communicating systems and keeps one side from overwhelming the other with data.
+In order to increase receive window size of 16 bits, the TCP Window Scaling was introduced in RFC 1323. 
+
+This is an option of TCP header. The scaling factor is 1 byte but standard mandates that we can use the value only up to 14.
 
         void tcp_parse_options(const struct sk_buff *skb, struct tcp_options_received *opt_rx,
                        const u8 **hvpp, int estab)
@@ -25,7 +30,13 @@ In order to increase receive window size of 16 bits, the TCP Window Scaling was 
                                 }
                                 break;
 
-This Window scale is sent when initializing TCP connection in SYN segment by client and SYN/ACK by server.
+In order to be less confusing we will use the following definitions
+
+* Origininator - is the side that iniciates the communication which is usually a client
+* Acceptor - is the side that accepts the request for establish the communication which is usually a server
+* Receiver/Sender - is the side that receives/sends a segment, which can be the Originator or Acceptor depending on context as the communication is bi directional
+            
+This Window scale is sent when initializing TCP connection in SYN segment by client - the Originator and SYN/ACK by server - the Acceptor of the communication.
 
         21:20:05.370976 IP 192.168.1.133.50236 > www.creditotoronjadeingdirect.es.http: S 25373982:25373982(0) win 65535 <mss 1460,nop,wscale 3,nop,nop,timestamp 304748558 0,sackOK,eol>
         21:20:05.427365 IP www.creditotoronjadeingdirect.es.http > 192.168.1.133.50236: S 55794747:55794747(0) ack 25373983 win 14600 <mss 1452,wscale 0,eol>
@@ -36,6 +47,8 @@ scaling factor.
 
 If one of side does not support window scaling e.g `/proc/sys/net/ipv4/tcp_window_scaling` is `0` then window scaling must not be used
 in neither sending nor receiving direction.
+
+**The Acceptor**
 
 When receiving SYN segment, the `tcp_rcv_state_process` is called 
 
@@ -188,6 +201,7 @@ to the originator of tcp connection. It is `0` if the window scaling option is n
 
 At this point the receiver of assume that window scaling is `0` in both directions of the communication.
 
+**The Originator**
 
 **References**
 
