@@ -200,7 +200,7 @@ At this point the receiver of assume that window scaling is `0` in both directio
 
 **The Originator**
 
-The Originator when receiving SYN-ACK segment with window scaling option of `0`, will set both
+The Originator when receiving SYN-ACK segment without window scaling option enabled, will set both
 
         5566static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
         5567                                         const struct tcphdr *th, unsigned int len)
@@ -221,6 +221,9 @@ The Originator when receiving SYN-ACK segment with window scaling option of `0`,
         5650
         ...
 
+But in case it receives a window scaling option enabled with window scaling option value of `0`, it assumes that 
+the Acceptor agree on proposed window scaling value, which in turn can causes a problem because the Acceptor thinks that
+the sending scaling windows is ´0´ while the Originator thinks that it is the proposed value.
 
 **References**
 
