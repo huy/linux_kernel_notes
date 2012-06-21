@@ -1,4 +1,4 @@
-# TCP Window Scaling if one of sides does not support window scaling
+# TCP Window Scaling if one side does not support window scaling
 
 **Definition**
 
@@ -82,15 +82,6 @@ Which in turn calls `tcp_rcv_synsent_state_process`
         ...
         5575        tcp_parse_options(skb, &tp->rx_opt, &hash_location, 0);
         5576
-        ...
-        5577        if (th->ack) {
-        ...
-
-                        if (!tp->rx_opt.wscale_ok) {
-        5647                        tp->rx_opt.snd_wscale = tp->rx_opt.rcv_wscale = 0;
-        5648                        tp->window_clamp = min(tp->window_clamp, 65535U);
-        5649                }
-        5650
         ...
  
         5773        if (th->syn) {
@@ -208,6 +199,28 @@ to the originator of tcp connection. It is `0` if the window scaling option is n
 At this point the receiver of assume that window scaling is `0` in both directions of the communication.
 
 **The Originator**
+
+The Originator when receiving SYN-ACK segment with window scaling option of `0`, will set both
+
+        5566static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
+        5567                                         const struct tcphdr *th, unsigned int len)
+        5568{
+        ...
+        5571        struct tcp_sock *tp = tcp_sk(sk);
+        ...
+        5575        tcp_parse_options(skb, &tp->rx_opt, &hash_location, 0);
+        5576
+        ...
+        5577        if (th->ack) {
+        ...
+
+                        if (!tp->rx_opt.wscale_ok) {
+        5647                        tp->rx_opt.snd_wscale = tp->rx_opt.rcv_wscale = 0;
+        5648                        tp->window_clamp = min(tp->window_clamp, 65535U);
+        5649                }
+        5650
+        ...
+
 
 **References**
 
