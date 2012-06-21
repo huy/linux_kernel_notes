@@ -1,8 +1,7 @@
-# TCP Window Scaling
+# TCP Window Scaling if one of side does not support window scaling
 
 Every TCP packet includes, in the header, a "window" field which specifies how much data the system which sent the packet is willing and able to receive from the other end. The window is the flow control mechanism used by TCP; it controls the maximum amount of data which can be "in flight" between two communicating systems and keeps one side from overwhelming the other with data.
-
-In order to increase receive window size of 16 bits, the TCP Window Scaling was introduced in RFC 1323. This is an option of TCP header. The scaling factor is 1 byte but standard mandate that we can use only up to 14
+In order to increase receive window size of 16 bits, the TCP Window Scaling was introduced in RFC 1323. This is an option of TCP header. The scaling factor is 1 byte but standard mandate that we can use only up to 14.
 
         void tcp_parse_options(const struct sk_buff *skb, struct tcp_options_received *opt_rx,
                        const u8 **hvpp, int estab)
@@ -109,20 +108,8 @@ scaling is set to `0` in `rx_opt` of the socket
         3886                                break;
 
 
-Now the `tcp_send_synack(sk)` is called to send SYN ack back to the sender 
-
-        /* Do all connect socket setups that can be done AF independent. */
-        2565static void tcp_connect_init(struct sock *sk)
-        2566
-        ...
-            tcp_select_initial_window(tcp_full_space(sk),
-        2603                                  tp->advmss - (tp->rx_opt.ts_recent_stamp ? tp->tcp_header_len - sizeof(struct tcphdr) : 0),
-        2604                                  &tp->rcv_wnd,
-        2605                                  &tp->window_clamp,
-        2606                                  sysctl_tcp_window_scaling,
-        2607                                  &rcv_wscale,
-        2608                                  dst_metric(dst, RTAX_INITRWND));
-
+Now the `tcp_send_synack(sk)` is called to send SYN ack back to the sender. This function makes a call to `tcp_make_synack` to 
+create SYN-ACK segment
 
         /* Prepare a SYN-ACK. */
         2430struct sk_buff *tcp_make_synack(struct sock *sk, struct dst_entry *dst,
@@ -152,6 +139,9 @@ Now the `tcp_send_synack(sk)` is called to send SYN ack back to the sender
         2479                ireq->rcv_wscale = rcv_wscale;
         2480        }
 
+
+The `tcp_make_synack` pass window scale option `ireq->wscale_ok` to `tcp_select_initial_window`, that decides the window scale to be sent
+to the originator of tcp connection. It is `0` if the window scaling option is not enabled.
 
         189void tcp_select_initial_window(int __space, __u32 mss,
         190                               __u32 *rcv_wnd, __u32 *window_clamp,
@@ -195,6 +185,8 @@ Now the `tcp_send_synack(sk)` is called to send SYN ack back to the sender
         228                }
         229        }
         230
+
+At this point the receiver of assume that window scaling is `0` in both directions of the communication.
 
 
 **References**
