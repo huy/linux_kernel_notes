@@ -1,4 +1,4 @@
-# TCP Window Scaling if one of side does not support window scaling
+# TCP Window Scaling if one of sides does not support window scaling
 
 **Overview**
 
