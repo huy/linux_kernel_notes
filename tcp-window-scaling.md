@@ -32,13 +32,14 @@ This Window scale is sent when initializing TCP connection in SYN segment by cli
         21:20:05.427365 IP www.creditotoronjadeingdirect.es.http > 192.168.1.133.50236: S 55794747:55794747(0) ack 25373983 win 14600 <mss 1452,wscale 0,eol>
         
 After agree on window scaling factor in each direction. When sending window size to sender the receiver will right shift desire window 
-size by value of scaling factor. When receving window sizefrom sender the receiver will left shift desure window size by value of 
+size by value of scaling factor. When receving window size from sender the receiver will left shift desure window size by value of 
 scaling factor.
 
 
-If one of side does not support window scaling then
+If one of side does not support window scaling e.g `/proc/sys/net/ipv4/tcp_window_scaling` is `0` then window scaling must not be used
+in neither sending nor receiving direction.
 
-
+When receiving SYN segment, the `tcp_rcv_state_process` is called 
 
         5837 *      This function implements the receiving procedure of RFC 793 for
         5838 *      all states except ESTABLISHED and TIME_WAIT.
@@ -53,17 +54,8 @@ If one of side does not support window scaling then
 
         5892        case TCP_SYN_SENT:
         5893                queued = tcp_rcv_synsent_state_process(sk, skb, th, len);
-        5894                if (queued >= 0)
-        5895                        return queued;
-        5896
-        5897                /* Do step6 onward by hand. */
-        5898                tcp_urg(sk, skb, th);
-        5899                __kfree_skb(skb);
-        5900                tcp_data_snd_check(sk);
-        5901                return 0;
-        5902        }
 
-
+Which in turn calls `tcp_rcv_synsent_state_process` 
 
         5566static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
         5567                                         const struct tcphdr *th, unsigned int len)
@@ -87,6 +79,35 @@ If one of side does not support window scaling then
         ...
         5804
         5805                tcp_send_synack(sk);
+
+The `tcp_rcv_synsent_state_process` calls `tcp_parse_options` in first place, that check if there is window scaling option 
+is present in the SYN segment and the `sys_tcp_window_scaling` is enable. If not so, then both send and receive window 
+scaling is set to zero
+
+        3834void tcp_parse_options(const struct sk_buff *skb, struct tcp_options_received *opt_rx,
+        3835                       const u8 **hvpp, int estab)
+        3836{
+        ...
+        3844        while (length > 0) {
+        ...
+        3848                switch (opcode) {
+        ...
+        3872                        case TCPOPT_WINDOW:
+        3873                                if (opsize == TCPOLEN_WINDOW && th->syn &&
+        3874                                    !estab && sysctl_tcp_window_scaling) {
+        3875                                        __u8 snd_wscale = *(__u8 *)ptr;
+        3876                                        opt_rx->wscale_ok = 1;
+        3877                                        if (snd_wscale > 14) {
+        3878                                                if (net_ratelimit())
+        3879                                                        pr_info("%s: Illegal window scaling value %d >14 received\n",
+        3880                                                                __func__,
+        3881                                                                snd_wscale);
+        3882                                                snd_wscale = 14;
+        3883                                        }
+        3884                                        opt_rx->snd_wscale = snd_wscale;
+        3885                                }
+        3886                                break;
+
 
 
         /* Do all connect socket setups that can be done AF independent. */
