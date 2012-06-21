@@ -4,10 +4,10 @@
 
 In order to be less confusing we will use the following definitions
 
-* Origininator - is the side that iniciates the communication which is usually a client
-* Acceptor - is the side that accepts the request for establish the communication which is usually a server
-* Receiver is the side that receives a segment, which can be the Originator or Acceptor depending on context 
-* Sender - is the side that sends a segment, 
+* Origininator - the side that iniciates the communication which is usually a client
+* Acceptor - the side that accepts the request for establish the communication which is usually a server
+* Receiver - the side that receives a segment 
+* Sender - the side that sends a segment
 
 As the communication is bi directional the Sender or Receiver can be the Originator or Acceptor depending on context 
 
