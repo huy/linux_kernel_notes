@@ -225,9 +225,10 @@ direction to `0`
 **Problem with middleman**
 
 In case someone in the middle modify the window scaling option e.g. instead of forwarding segment without window scaling 
-option,  add window scaling option with value of `0`. Then the Originator will receive a window scaling option enabled 
-with window scaling option value of `0` so it assumes that the Acceptor agree on proposed window scaling value, which in turn can causes a problem because the Acceptor thinks that
-the sending scaling windows is ´0´ while the Originator thinks that it is the proposed value.
+option,  add window scaling option with value of `0`. 
+
+Then the Originator will receive a window scaling option enabled with window scaling option value of `0` so it assumes that the Acceptor agree on proposed window scaling value, which in turn can causes a problem because the Acceptor thinks that
+the sending scaling windows is `0` while the Originator thinks that it is the proposed value.
 
 **References**
 
