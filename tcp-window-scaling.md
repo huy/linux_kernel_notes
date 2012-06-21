@@ -1,5 +1,16 @@
 # TCP Window Scaling if one of sides does not support window scaling
 
+**Definition**
+
+In order to be less confusing we will use the following definitions
+
+* Origininator - is the side that iniciates the communication which is usually a client
+* Acceptor - is the side that accepts the request for establish the communication which is usually a server
+* Receiver is the side that receives a segment, which can be the Originator or Acceptor depending on context 
+* Sender - is the side that sends a segment, 
+
+As the communication is bi directional the Sender or Receiver can be the Originator or Acceptor depending on context 
+
 **Overview**
 
 Every TCP packet includes, in the header, a "window" field which specifies how much data the system which sent the packet is willing and able to receive from the other end. 
@@ -30,12 +41,7 @@ This is an option of TCP header. The scaling factor is 1 byte but standard manda
                                 }
                                 break;
 
-In order to be less confusing we will use the following definitions
-
-* Origininator - is the side that iniciates the communication which is usually a client
-* Acceptor - is the side that accepts the request for establish the communication which is usually a server
-* Receiver/Sender - is the side that receives/sends a segment, which can be the Originator or Acceptor depending on context as the communication is bi directional
-            
+    
 This Window scale is sent when initializing TCP connection in SYN segment by client - the Originator and SYN/ACK by server - the Acceptor of the communication.
 
         21:20:05.370976 IP 192.168.1.133.50236 > www.creditotoronjadeingdirect.es.http: S 25373982:25373982(0) win 65535 <mss 1460,nop,wscale 3,nop,nop,timestamp 304748558 0,sackOK,eol>
