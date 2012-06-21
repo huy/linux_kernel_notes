@@ -118,7 +118,7 @@ scaling is set to `0` in `rx_opt` of the socket
         3886                                break;
 
 
-Now the `tcp_send_synack(sk)` is called to send SYN ack back to the sender. This function makes a call to `tcp_make_synack` to 
+Now the `tcp_send_synack(sk)` is called to send SYN-ACK back to the sender. This function makes a call to `tcp_make_synack` to 
 create SYN-ACK segment
 
         /* Prepare a SYN-ACK. */
@@ -196,11 +196,12 @@ to the originator of tcp connection. It is `0` if the window scaling option is n
         229        }
         230
 
-At this point the receiver of assume that window scaling is `0` in both directions of the communication.
+At this point the Acceptor of assume that window scaling is `0` in both directions of the communication.
 
 **The Originator**
 
-The Originator when receiving SYN-ACK segment without window scaling option enabled, will set both
+The Originator when receiving SYN-ACK segment without window scaling option enabled, will also set window scaling in both
+direction to `0`
 
         5566static int tcp_rcv_synsent_state_process(struct sock *sk, struct sk_buff *skb,
         5567                                         const struct tcphdr *th, unsigned int len)
@@ -221,8 +222,11 @@ The Originator when receiving SYN-ACK segment without window scaling option enab
         5650
         ...
 
-But in case it receives a window scaling option enabled with window scaling option value of `0`, it assumes that 
-the Acceptor agree on proposed window scaling value, which in turn can causes a problem because the Acceptor thinks that
+**Problem with middleman**
+
+In case someone in the middle modify the window scaling option e.g. instead of forwarding segment without window scaling 
+option,  add window scaling option with value of `0`. Then the Originator will receive a window scaling option enabled 
+with window scaling option value of `0` so it assumes that the Acceptor agree on proposed window scaling value, which in turn can causes a problem because the Acceptor thinks that
 the sending scaling windows is ´0´ while the Originator thinks that it is the proposed value.
 
 **References**
