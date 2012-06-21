@@ -35,7 +35,6 @@ After agree on window scaling factor in each direction. When sending window size
 size by value of scaling factor. When receving window size from sender the receiver will left shift desure window size by value of 
 scaling factor.
 
-
 If one of side does not support window scaling e.g `/proc/sys/net/ipv4/tcp_window_scaling` is `0` then window scaling must not be used
 in neither sending nor receiving direction.
 
@@ -61,7 +60,8 @@ Which in turn calls `tcp_rcv_synsent_state_process`
         5567                                         const struct tcphdr *th, unsigned int len)
         5568{
         ...
-
+        5571        struct tcp_sock *tp = tcp_sk(sk);
+        ...
         5575        tcp_parse_options(skb, &tp->rx_opt, &hash_location, 0);
         5576
         ...
@@ -82,7 +82,7 @@ Which in turn calls `tcp_rcv_synsent_state_process`
 
 The `tcp_rcv_synsent_state_process` calls `tcp_parse_options` in first place, that check if there is window scaling option 
 is present in the SYN segment and the `sys_tcp_window_scaling` is enable. If not so, then both send and receive window 
-scaling is set to zero
+scaling is set to `0` in `rx_opt` of the socket
 
         3834void tcp_parse_options(const struct sk_buff *skb, struct tcp_options_received *opt_rx,
         3835                       const u8 **hvpp, int estab)
@@ -109,6 +109,7 @@ scaling is set to zero
         3886                                break;
 
 
+Now the `tcp_send_synack(sk)` is called to send SYN ack back to the sender 
 
         /* Do all connect socket setups that can be done AF independent. */
         2565static void tcp_connect_init(struct sock *sk)
