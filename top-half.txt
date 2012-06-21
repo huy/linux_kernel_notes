@@ -11,7 +11,7 @@ That is reason that to divide the work of interrupt handler to
 
 During several routine operations, the kernel checks whether any bottom halves are scheduled for execution. If any are waiting, the kernel runs the function do_softirq/invoke_softirq, to execute them.
 The checks are performed during
-1. exit_irq in do_IRQ: because the top haft - hardware interrupt handler usually delegate some work to bottom haft - software interrupt handler. So by calling software interrupt handler at exit of hardware interrupt handler, the latency is minimum.
+1. exit_irq in do_IRQ: because the top half - hardware interrupt handler usually delegate some work to bottom half - software interrupt handler. So by calling software interrupt handler at exit of hardware interrupt handler, the latency is minimum.
 
 
 fastcall unsigned int do_IRQ(struct pt_regs * regs) {
