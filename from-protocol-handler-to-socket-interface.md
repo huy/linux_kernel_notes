@@ -1,6 +1,12 @@
 ﻿# From protocol handler to Socket Interface
 
-The interface between user space program and kernel network is Socket. A special Socket file system is created to facilitate this communication
+The interface between user space program and kernel network is Socket. We access to socket using 
+
+* socket api e.g.  `connect`, `accept`, `bind`, `listen`, `send`, `receive`  or
+* file api e.g. `read`, `write`, `close`
+
+Socket api is complete while file api some time offer only few operations, and alone is not enough 
+to make socket work as the `open` is not provided, application end up with use only socket api.
 
 **Socket data structures**
 
@@ -102,117 +108,6 @@ Sock structure encapsulate internal implementation of socket
     };
     
 
-**Socket as file**
-
-Because socket is kind of file, Linux implements special filesystem, inode for socket.
-
-Socket file system
-
-    [root@localhost ~]# cat /proc/filesystems 
-    ..
-    nodev        sockfs
-    ...
-    
-    
-    static int __init sock_init(void)
-    {
-    ...
-            register_filesystem(&sock_fs_type);
-            sock_mnt = kern_mount(&sock_fs_type);
-    …
-    }
-    
-    
-    struct vfsmount *kern_mount(struct file_system_type *type)
-    {
-            return vfs_kern_mount(type, 0, type->name, NULL);
-    }
-    
-    
-    struct vfsmount *
-    vfs_kern_mount(struct file_system_type *type, int flags, const char *name, void *data)
-    {
-    ..
-    
-    
-            error = type->get_sb(type, flags, name, data, mnt);
-    ..
-    }
-    
-    static struct file_system_type sock_fs_type = {
-            .name =         "sockfs",
-            .get_sb =       sockfs_get_sb, /* return super block*/
-            .kill_sb =      kill_anon_super,
-    };
-    
-    static struct super_operations sockfs_ops = {
-            .alloc_inode =  sock_alloc_inode,
-            .destroy_inode =sock_destroy_inode,
-            .statfs =       simple_statfs,
-    };
-    
-    static int sockfs_get_sb(struct file_system_type *fs_type,
-            int flags, const char *dev_name, void *data, struct vfsmount *mnt)
-    {
-            return get_sb_pseudo(fs_type, "socket:", &sockfs_ops, SOCKFS_MAGIC,
-                                 mnt);
-    }
-
-Socket inode
-    
-    struct socket_alloc {
-            struct socket socket;
-            struct inode vfs_inode;
-    };
-    
-    static struct inode *sock_alloc_inode(struct super_block *sb)
-    {
-            struct socket_alloc *ei;
-            ei = (struct socket_alloc *)kmem_cache_alloc(sock_inode_cachep, SLAB_KERNEL);
-            if (!ei)
-                    return NULL;
-            init_waitqueue_head(&ei->socket.wait);
-    
-    
-            ei->socket.fasync_list = NULL;
-            ei->socket.state = SS_UNCONNECTED;
-            ei->socket.flags = 0;
-            ei->socket.ops = NULL;
-            ei->socket.sk = NULL;
-            ei->socket.file = NULL;
-            ei->socket.flags = 0;
-    
-    
-            return &ei->vfs_inode;
-    }
-    
-    
-    static struct dentry_operations sockfs_dentry_operations = {
-            .d_delete =     sockfs_delete_dentry,
-    };
-    
-    
-    struct file_operations socket_file_ops = {
-            .owner =        THIS_MODULE,
-            .llseek =       no_llseek,
-            .aio_read =     sock_aio_read,
-            .aio_write =    sock_aio_write,
-            .poll =         sock_poll,
-            .unlocked_ioctl = sock_ioctl,
-    #ifdef CONFIG_COMPAT
-            .compat_ioctl = compat_sock_ioctl,
-    #endif
-            .mmap =         sock_mmap,
-            .open =         sock_no_open,   /* special open code to disallow open via /proc */
-            .release =      sock_close,
-            .fasync =       sock_fasync,
-            .readv =        sock_readv,
-            .writev =       sock_writev,
-            .sendpage =     sock_sendpage,
-            .splice_write = generic_splice_sendpage,
-    };
-    
-    
 **Create a socket**
     
     asmlinkage long sys_socket(int family, int type, int protocol)
