@@ -1,16 +1,16 @@
-﻿# Get kernel state using  sysrq
+# Get kernel state using  sysrq
 
 
 Enable
 
 
-# echo 1 > /proc/sys/kernel/sysrq
+    # echo 1 > /proc/sys/kernel/sysrq
 
 
 Generate dump
 
 
-# echo 'm' > /proc/sysrq-trigger
+    # echo 'm' > /proc/sysrq-trigger
 
 
 Trigger
@@ -27,8 +27,9 @@ Trigger
 View dump
 
 
-# vi /var/log/messages
+    # vi /var/log/messages
 
 
 References
+
 1. https://access.redhat.com/kb/docs/DOC-2024
