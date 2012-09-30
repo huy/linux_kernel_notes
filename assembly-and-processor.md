@@ -1,4 +1,4 @@
-﻿# assembly language and how processor work
+# Assembly language and how processor work
 
 Assuming that segment descriptor for code, data, stack are stored in cs, ds and respectively ss registers.
 
