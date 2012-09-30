@@ -2,7 +2,9 @@
 
 The interface between user space program and kernel network is Socket. A special Socket file system is created to facilitate this communication
 
-Socket data structure
+**Socket data structures**
+
+Socket
 
     struct socket {
         socket_state            state;
@@ -100,7 +102,11 @@ Sock structure encapsulate internal implementation of socket
     };
     
 
-socks filesysten
+**Socket as file**
+
+Because socket is kind of file, Linux implements special filesystem, inode for socket.
+
+Socket file system
 
     [root@localhost ~]# cat /proc/filesystems 
     ..
@@ -133,13 +139,11 @@ socks filesysten
     ..
     }
     
-    
     static struct file_system_type sock_fs_type = {
             .name =         "sockfs",
             .get_sb =       sockfs_get_sb, /* return super block*/
             .kill_sb =      kill_anon_super,
     };
-    
     
     static struct super_operations sockfs_ops = {
             .alloc_inode =  sock_alloc_inode,
@@ -147,20 +151,19 @@ socks filesysten
             .statfs =       simple_statfs,
     };
     
-    
     static int sockfs_get_sb(struct file_system_type *fs_type,
             int flags, const char *dev_name, void *data, struct vfsmount *mnt)
     {
             return get_sb_pseudo(fs_type, "socket:", &sockfs_ops, SOCKFS_MAGIC,
                                  mnt);
     }
+
+Socket inode
     
-    
-    truct socket_alloc {
+    struct socket_alloc {
             struct socket socket;
             struct inode vfs_inode;
     };
-    
     
     static struct inode *sock_alloc_inode(struct super_block *sb)
     {
@@ -210,8 +213,7 @@ socks filesysten
     };
     
     
-    Create a socket
-    
+**Create a socket**
     
     asmlinkage long sys_socket(int family, int type, int protocol)
     {
@@ -259,8 +261,8 @@ socks filesysten
                     err = 0;
             }
     …
-    The socket family holding initialization function get registered at the system boot
-    
+
+The socket family holding initialization function get registered at the system boot
     
     static int __init inet_init(void)
     {
@@ -269,8 +271,7 @@ socks filesysten
     …
     
     
-    E.g. of  structure of socket family for IPv4 Internet protocols
-    
+E.g. of  structure of socket family for IPv4 Internet protocols
     
     static struct net_proto_family inet_family_ops = {
             .family = PF_INET,
@@ -308,8 +309,8 @@ socks filesysten
                     err = sk->sk_prot->init(sk);
     
     
-    The operation functions are specific to protocol (normally 0 as there is only one protocol) of the family (local, IPv4) and type of the socket (datagram,  stream or raw)  
-    
+The operation functions are specific to protocol (normally 0 as there is only one protocol) of the family (local, IPv4) 
+and type of the socket (datagram,  stream or raw)  
     
     static int __init inet_init(void)
     {
@@ -387,20 +388,12 @@ socks filesysten
             sk->sk_data_ready       =       sock_def_readable;
      
     
-    
-    
-    
-    
-    
     struct sock *sk_alloc(int family, gfp_t priority,
                           struct proto *prot, int zero_it)
     {
             struct sock *sk = NULL;
     ...
                             sk->sk_prot = sk->sk_prot_creator = prot;
-    
-    
-    
     
     struct proto udp_prot = {
             .name              = "UDP",
@@ -430,7 +423,8 @@ socks filesysten
     #endif
     };
     
-    
+Socket is attached to a file handle so we can operate with socket using file operation e.g. read, write
+
     static int sock_attach_fd(struct socket *sock, struct file *file)
     {
             struct qstr this;
@@ -465,8 +459,7 @@ socks filesysten
     }
     
     
-    Receive data from socket
-    
+**Receive data from socket**
     
     asmlinkage long sys_recvfrom(int fd, void __user * ubuf, size_t size, unsigned flags,
                                  struct sockaddr __user *addr, int __user *addr_len)
@@ -501,8 +494,8 @@ socks filesysten
     …
     
     
-    ops is protocol operation struct holding pointers to functions operating on socket file descriptor. When creating socket this field is filled depending mostly on domain/family and type
-    
+ops is protocol operation struct holding pointers to functions operating on socket file descriptor. 
+When creating socket this field is filled depending mostly on domain/family and type
     
     int sock_common_recvmsg(struct kiocb *iocb, struct socket *sock,
                             struct msghdr *msg, size_t size, int flags)
@@ -517,9 +510,6 @@ socks filesysten
                     msg->msg_namelen = addr_len;
             return err;
     }
-    
-    
-    
     
     static int udp_recvmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
                            size_t len, int noblock, int flags, int *addr_len)
@@ -608,7 +598,6 @@ socks filesysten
     ...
            *timeo_p = schedule_timeout(*timeo_p);
     
-
 
 
 References
