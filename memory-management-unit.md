@@ -18,8 +18,13 @@ However the translation table of paging unit is per process so changes each time
 
 
 32 bit linux kernel can use more than 4GB RAM (one process still has limitation of 4 GB, 1GB for kernel mode, 3GB for 
-user mode) if  PAE (Physical Address Extension) is enabled in BIOS (grep -i PAE /proc/cpuinfo) and kernel 
-(grep -i HIGHMEM /boot/config-’uname -r’)
+user mode) if  PAE (Physical Address Extension) is enabled in BIOS 
+    
+    grep -i PAE /proc/cpuinfo
+
+and kernel 
+
+    grep -i HIGHMEM /boot/config-’uname -r’
 
 
 Kernel maintain a meta information about memory pages. Due limitation of some hardware architectures (e.g. x86), pages 
