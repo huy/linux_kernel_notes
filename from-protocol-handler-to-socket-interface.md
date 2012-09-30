@@ -2,7 +2,7 @@
 
 The interface between user space program and kernel network is Socket. A special Socket file system is created to facilitate this communication
 
-Socket structure
+Socket data structure
 
     struct socket {
         socket_state            state;
@@ -14,7 +14,6 @@ Socket structure
         wait_queue_head_t       wait;
         short                   type;
     };
-
 
 Sock structure encapsulate internal implementation of socket
 
