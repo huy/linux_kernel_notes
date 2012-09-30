@@ -2,10 +2,13 @@
 
 
 Non preemptive kernel will not switch a task when it is in kernel mode.  Task context switch only happens when the task
-voluntarily call schedule (i.e. cooperative kernel) or upon return from kernel mode to user mode (from system call or interrupt handler
+voluntarily call schedule (i.e. cooperative kernel) or upon return from kernel mode to user mode (from system call or
+interrupt handler)
 
 
-Preemptive kernel however can preempt a task at kernel mode if it is safe to reschedule, which usually means the task holding no lock. The task preempt_count increases by 1 when a lock is acquired by  a task and decrements by 1 when a lock is released.
+Preemptive kernel however can preempt a task at kernel mode if it is safe to reschedule, which usually means the task 
+holding no lock. The task preempt_count increases by 1 when a lock is acquired by  a task and decrements by 1 when a 
+lock is released.
 
 
     crash> struct task_struct {
