@@ -14,6 +14,7 @@ Generate dump
 
 
 Trigger
+
 1. m - dump information about memory allocation
 2. t - dump thread state information
 3. p - dump current CPU registers and flags
