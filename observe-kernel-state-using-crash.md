@@ -70,4 +70,4 @@ Example of examine kernel stack trace
 References
 
 1. http://people.redhat.com/anderson/crash_whitepaper/
-2. http://codeascraft.etsy.com/2012/03/30/kernel-debugging-101/ - very practical useful using of crahs
+2. http://codeascraft.etsy.com/2012/03/30/kernel-debugging-101/ - very practical useful using of crash

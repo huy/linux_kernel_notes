@@ -1,8 +1,6 @@
 ﻿## Reading source code
 
-Kernel use extensively c extension and macro e.g.
-
-    typeof/__typeof__ ,  __attribute__
+Kernel use extensively c extension and macro e.g.  `typeof/__typeof__` ,  `__attribute__`
 
     #define __get_cpu_var(var)        per_cpu__##var
 
