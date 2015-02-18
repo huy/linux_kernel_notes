@@ -18,3 +18,4 @@ execution (`PTRACE_CONT`) .
 
 1. http://eli.thegreenplace.net/2011/01/23/how-debuggers-work-part-1/
 2. http://www.linuxjournal.com/article/6100?page=0,2
+3. http://linux.die.net/man/2/ptrace
