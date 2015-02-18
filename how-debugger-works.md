@@ -10,8 +10,8 @@ The debugger ask the kernel to step (`PTRACE_SINGLESTEP`), continue execution (`
 **breakpoint**
 
 The debugger can set a breakpoint by changing an instruction (`PTRACE_POKETEXT`) at desire location with INT 3 (raise `SIGTRAP`).
-Then it can examine, modify content of memory & registries using `PTRACE_PEEKTEXT, `PTRACE_PEEKDATA`, `PTRACE_GETREGS`.
-Finally rewinds instruction pointer (regs.eip=-1, `PTRACE_SETREGS`), restores original instruction then continue 
+Then it can examine, modify content of memory and registries using `PTRACE_PEEKTEXT`, `PTRACE_PEEKDATA`, `PTRACE_GETREGS`.
+Finally rewinds instruction pointer (`regs.eip=-1+`, `PTRACE_SETREGS`), restores original instruction then continue 
 execution (`PTRACE_CONT`) .
 
 **References**
