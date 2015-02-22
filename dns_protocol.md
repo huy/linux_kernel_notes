@@ -19,4 +19,13 @@ By default resolver use recursive query, it can be show using `tshark -V`
             .... .... ...0 .... = Non-authenticated data: Unacceptable
         Questions: 1
 
+**Type of record**
+
+DNS most fundamental type of record arre
+
+* A : hostname to ip
+* PTR: ip to hostname
+* MX: mail exchange
+* NS: name server
+* CNAME: alias
 
