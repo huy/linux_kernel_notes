@@ -1,0 +1,15 @@
+## Understanding
+
+TCP half close is term to describe situation that one party closes one direction of the communication channel (from it side), 
+usually by sending FIN to other side. Upon receive ACK for that, it no longer send any data but still can receive data from 
+other party.
+
+The party send `FIN` to other party and change it internal state to `FIN_WAIT_1`. Upon receiving the other party ACK it and 
+changes to `CLOSE_WAIT`. After receiving `ACK` the sending party changes to `FIN_WAIT_2`.
+
+An examplefor half close is one party sends text file as stream to other remote machine for sorting then get back the result.
+
+    $rsh bsdi sort < datafile
+
+After sending data, it 'half' closes the connection to indicate other side to start sort but keep reverse comunication direction 
+open to receive the result.
