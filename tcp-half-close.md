@@ -11,5 +11,7 @@ An examplefor half close is one party sends text file as stream to other remote 
 
     $rsh bsdi sort < datafile
 
-After sending data, it 'half' closes the connection to indicate other side to start sort but keep reverse comunication direction 
-open to receive the result.
+After sending data, it 'half' closes the connection to indicate other side to start sort but keep reverse comunication direction
+open to receive the result. 
+
+Notes that this is not the same as half open, which is erroneous. 
