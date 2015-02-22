@@ -6,7 +6,7 @@ When request sent to DNS server can be recursive or iterative. In the first case
 it contact other servers to figure out and return the answer to the resolver (the client). On the other hand for iterative 
 request the name server just return other name server for the resolver to contact them by itself.
 
-By default resolver use recursive query, it can be show using `tshark -V`
+By default resolver use recursive query, it can be show using `tshark -O ip`
     
     Domain Name System (query)
         Transaction ID: 0x0965
