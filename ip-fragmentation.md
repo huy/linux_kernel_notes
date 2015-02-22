@@ -12,4 +12,4 @@ length IP packet).
 Because fragments can arrive destination at different order, the IP layer only wait until timeout specified in 
 `/proc/sys/net/ipv4/ipfrag_time` (30 seconds by default) before discard received fragments of a particular packet's identification.
 
-The packet identification is only 16 bits so it can be wrapped quite quicky on high speed transmission and if checksum on upper protocols like udp and tcp is not resilient enough then corrupted data can be delivered to the application. see https://tools.ietf.org/html/rfc4963
+The packet identification is only 16 bits so it can be wrapped quite quicky on high speed transmission resulting in mis association and if checksum on upper protocols like udp and tcp is not resilient enough then corrupted data can be delivered to the application. see https://tools.ietf.org/html/rfc4963
