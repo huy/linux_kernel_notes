@@ -18,7 +18,8 @@ The packet identification is only 16 bits so it can be wrapped quite quicky on h
 
 **TCP MSS**
 
-To avoid IP fragmentation, parties of TCP protocol exchange Maximum Segment Size so other can decide size of segment to be sent. 
+To avoid IP fragmentation, parties of TCP protocol exchange Maximum Segment Size so other can decide size of segment to be sent.
+
 **Path MTU discovery**
 
 PMTU is min of all MTU along the path from source to destination. By default linux enable PMTU for stream socket. If enabled as socket option in non stream socket (e.g. udp), sending packet larger the PMTU will result in `EMSGSIZE`. 
