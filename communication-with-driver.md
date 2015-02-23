@@ -11,5 +11,7 @@ Other way is to register using proc filesystem
 
 So when user process read, write to the special file, kernel invokes relevant registered file system functions. 
     
-See example in http://www.freesoftwaremagazine.com/articles/drivers_linux
+See example in 
 
+* http://www.freesoftwaremagazine.com/articles/drivers_linux
+* http://www.tldp.org/LDP/lkmpg/2.6/html/lkmpg.html
