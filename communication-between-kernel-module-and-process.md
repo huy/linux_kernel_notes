@@ -16,3 +16,4 @@ So when user process read, write to the special file, kernel invokes relevant re
 See example in 
 
 * http://www.tldp.org/LDP/lkmpg/2.6/html/lkmpg.html
+* http://www.opensourceforu.com/2012/06/some-nifty-udev-rules-and-examples/
