@@ -5,6 +5,8 @@ number in file system. The driver module in turn register file system functions 
 
     result = register_chrdev(memory_major, "memory", &memory_fops);
 
+The result is pseudo file `/proc/devices/memory` . `Udev` then create corresponding device file `/dev/memory` 
+
 Other way is to register using proc filesystem
 
     create_proc_read_entry("hello_world", 0, NULL, hello_read_proc, NULL) 
@@ -13,5 +15,4 @@ So when user process read, write to the special file, kernel invokes relevant re
     
 See example in 
 
-* http://www.freesoftwaremagazine.com/articles/drivers_linux
 * http://www.tldp.org/LDP/lkmpg/2.6/html/lkmpg.html
