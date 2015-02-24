@@ -5,7 +5,7 @@ number in file system. The driver module in turn register file system functions 
 
     result = register_chrdev(memory_major, "memory", &memory_fops);
 
-The result is pseudo file `/proc/devices/memory` . `Udev` then create corresponding device file traditional `/dev/memory` 
+The result is pseudo file `/proc/devices/memory` . `udev` then create corresponding device file traditional `/dev/memory` 
 
 Other way is to register using proc filesystem
 
