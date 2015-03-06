@@ -13,11 +13,12 @@ Typical IO scheduler are
 
 IO Scheduler is specified in `[]` for each block device 
 
-    # cat /sys/block/sda/queue/scheduler 
-    noop [deadline]
-    # echo noop > /sys/block/sda/queue/scheduler
-    #cat /sys/block/sda/queue/scheduler 
-    [noop] deadline
+    /home/vagrant# cat /sys/block/sda/queue/scheduler
+    noop [deadline] cfq
+    /home/vagrant# echo cfq > /sys/block/sda/queue/scheduler
+    /home/vagrant# cat /sys/block/sda/queue/scheduler
+    noop deadline [cfq]
+
 
 References
 
