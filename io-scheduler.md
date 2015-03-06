@@ -5,8 +5,8 @@ physical characteristics of block devices (usually hard disk). The term schedule
 
 Typical IO scheduler are
 
-* Elevator : no longer used, it sort requests by block number maintaining queue of sorted requests and serves requests as elevator maximizing throughput . When new requests with lower block number are constantly inserted in the head of the queue causes starvation of a request at the end of the queue.
-* `deadline` : replace elevator scheduler
+* Elevator : default in 2.4, no longer used. It sort requests by block number maintaining queue of sorted requests and serves requests as elevator maximizing throughput . When new requests with lower block number are constantly inserted in the head of the queue causes starvation of a request at the end of the queue.
+* `deadline` : replaces Elevator. In addition to queue of requets sorted by block number, it maintains 2 deadline FIFO queue, one for read requests, other for write requests. The deadline for read requets queue is 500 ms and for write requests queue is 5 secs. The IO scheduler checks by looking at oldest requests if deadline ocurrs then it serve requests from deadline FIFO queue instead of sorted queue.
 * `noop` : simplest schduler using  queue
 * Anticipatory : is replaced by CFQ
 * `cfq` - Completely Fair Queuing : default scheduler
