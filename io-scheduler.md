@@ -28,7 +28,7 @@ In addition to queue of requets sorted by block number, it maintains 2 deadline 
 
 **noop**
 
-Noop uses simple FIFO queue to merges and serves requests, no reordering based on sector number is performed. It assumes that OS has no productive way to optimize request order due to lack of information about physical devices or seek time doesn't depend on sector number. Example are SSD disk, Network Attached Storage.
+Noop uses simple FIFO queue to merges and serves requests, no reordering based on sector number is performed. It assumes that OS has no productive way to optimize request order due to lack of information about physical devices. Example are SSD disk where seek time doesn't depend on sector number; Network Attached Storage, RAID and Tagged Command Queuing - TCQ, where the device manages request's queue by itself.
 
 **References**
 
