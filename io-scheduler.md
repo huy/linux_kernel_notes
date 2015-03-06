@@ -6,9 +6,9 @@ Typical IO scheduler are
 
 * Elevator : default in 2.4, no longer used.
 * `deadline` : replaces Elevator, guarantees a start service time for a request.
-* `noop` : simplest schduler using  queue
-* Anticipatory : is replaced by CFQ
-* `cfq` - Completely Fair Queuing : default scheduler
+* `noop` : simplest schduler using  queue.
+* Anticipatory : idle after a read request to anticipate next closed read request. Is replaced by CFQ.
+* `cfq` - Completely Fair Queuing : default scheduler.
 
 IO Scheduler is specified in `[]` for each block device 
 
@@ -32,7 +32,7 @@ Noop uses simple FIFO queue to merges and serves requests, no reordering based o
 
 **Anticipatory**
 
-Anticipatory scheduler tries to idle for short period (e.g. few ms) after a read operation in anticipation of another close-by read requests. 
+Anticipatory scheduler tries to idle for short period (e.g. few ms) after a read operation in anticipation of another close-by read requests. It is remvoved because the same goal can be archived by tuning `slice_idle` of CFRQ.
 
 **References**
 
