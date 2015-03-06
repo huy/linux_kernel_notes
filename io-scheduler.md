@@ -5,7 +5,7 @@ The responsibility of IO Scheduler is to schedule pending IO requests (read or w
 Typical IO scheduler are
 
 * Elevator : default in 2.4, no longer used.
-* `deadline` : replaces Elevator.
+* `deadline` : replaces Elevator, guarantees a start service time for a request.
 * `noop` : simplest schduler using  queue
 * Anticipatory : is replaced by CFQ
 * `cfq` - Completely Fair Queuing : default scheduler
