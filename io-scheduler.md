@@ -47,4 +47,3 @@ CFQ IO scheduler works in similar way as CPU scheduler. The detail is mentioned 
 * http://en.wikipedia.org/wiki/Anticipatory_scheduling
 * http://en.wikipedia.org/wiki/CFQ
 * http://man7.org/linux/man-pages/man2/ioprio_set.2.html
-* http://www.linuxjournal.com/article/6931?page=0,1
