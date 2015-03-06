@@ -20,7 +20,7 @@ IO Scheduler is specified in `[]` for each block device
 
 **Elevator**
 
-It sort requests by sector's number maintaining queue of sorted requests and serves requests as elevator maximizing throughput. When new requests with lower sector's number are constantly inserted in the head of the queue causes starvation of a request at the end of the queue
+It sort requests by sector's number maintaining queue of sorted requests and serves requests as elevator maximizing throughput. When new requests with lower sector's number are constantly inserted in the head of the queue causes starvation of a request at the end of the queue. Deadline I/O scheduler can outperform the CFQ I/O scheduler for certain multithreaded, database workloads.
 
 **Deadline**
 
