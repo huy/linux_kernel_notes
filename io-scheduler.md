@@ -6,10 +6,10 @@ physical characteristics of block devices (usually hard disk). The term schedule
 Typical IO scheduler are
 
 * elevator : no longer used, sort by block number
-* deadline : replace elevator scheduler
-* noop : simplest schduler using  queue
+* `deadline` : replace elevator scheduler
+* `noop` : simplest schduler using  queue
 * Anticipatory : is replaced by CFQ
-* CFQ - Completely Fair Queuing : default scheduler
+* `cfq` - Completely Fair Queuing : default scheduler
 
 IO Scheduler is specified in `[]` for each block device 
 
