@@ -34,9 +34,16 @@ Noop uses simple FIFO queue to merges and serves requests, no reordering based o
 
 Anticipatory scheduler tries to idle for short period (e.g. few ms) after a read operation in anticipation of another close-by read requests. It is remvoved because the same goal can be archived by tuning `slice_idle` of CFRQ.
 
+**CFQ**
+
+Maintains queue for synchronous requests per process. It allocate timeslice (based on IO priority of a process) for each queue to access disk.
+
+Asynchronous requests for all processes are batched together in fewer queues, one per priority. 
+
 **References**
 
 * http://en.wikipedia.org/wiki/Noop_scheduler
 * http://en.wikipedia.org/wiki/Deadline_scheduler
 * http://en.wikipedia.org/wiki/Anticipatory_scheduling
+* http://en.wikipedia.org/wiki/CFQ
 * http://www.linuxjournal.com/article/6931?page=0,1
