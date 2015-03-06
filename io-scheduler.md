@@ -32,7 +32,7 @@ Noop uses simple FIFO queue to merges and serves requests, no reordering based o
 
 **Anticipatory**
 
-Anticipatory scheduler tries to idle for short period (e.g. few ms) to anticipate next synchronous request.
+Anticipatory scheduler tries to idle for short period (e.g. few ms) to anticipate future synchronous read operation.
 
 **References**
 
