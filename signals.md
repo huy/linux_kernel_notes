@@ -17,3 +17,5 @@ State of process can be observed by
 To resume the suspended process run
 
     kill -SIGCONT 3878
+
+The default signal sent out by `kill` is `TERM` mean terminate the process. Each process react to each signal differently, Java process e.g. dump stacktrace of all threads to stdout unpon receiving `QUIT`.  
