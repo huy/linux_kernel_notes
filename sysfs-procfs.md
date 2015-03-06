@@ -18,3 +18,7 @@ e.g.
       diskstats
       ...
 
+
+References
+
+* http://people.ee.ethz.ch/~arkeller/linux/multi/kernel_user_space_howto-2.html
