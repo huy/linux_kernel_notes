@@ -28,7 +28,7 @@ In addition to queue of requets sorted by block number, it maintains 2 deadline 
 
 **noop**
 
-Noop uses simple FIFO queue to serves requests.
+Noop uses simple FIFO queue to merges and serves requests, no reordering based on sector number is performed. It assumes that higher layer already optimize requets.
 
 **References**
 
