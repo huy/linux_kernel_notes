@@ -9,6 +9,10 @@ Various parameters and the daemon pdflush are employed to ensure that cache will
 free memory when it is needed (`dirty_background_ratio`, `dirty_ratio`) as well as un-synchronized 
 data are not remained too long in memory (`dirty_expire_centisecs`).
 
+Command to drop cache
+
+    #free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+    
 References
 
 1. http://www.westnet.com/~gsmith/content/linux-pdflush.htm
