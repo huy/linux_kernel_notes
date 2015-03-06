@@ -30,6 +30,10 @@ In addition to queue of requets sorted by block number, it maintains 2 deadline 
 
 Noop uses simple FIFO queue to merges and serves requests, no reordering based on sector number is performed. It assumes that OS has no productive way to optimize request order due to lack of information about physical devices. Example are SSD disk where seek time doesn't depend on sector number; Network Attached Storage, RAID and Tagged Command Queuing - TCQ, where the device manages request's queue by itself.
 
+**Anticipatory**
+
+Anticipatory scheduler tries to idle for short period (e.g. few ms) to anticipate next synchronous request.
+
 **References**
 
 * http://www.linuxjournal.com/article/6931?page=0,1
