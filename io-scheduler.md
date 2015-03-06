@@ -5,7 +5,7 @@ physical characteristics of block devices (usually hard disk). The term schedule
 
 Typical IO scheduler are
 
-* elevator : no longer used, sort by block number
+* Elevator : no longer used, it sort requests by block number maintaining queue of sorted requests and serves requests as elevator maximizing throughput . When new requests with lower block number are constantly inserted in the head of the queue causes starvation of a request at the end of the queue.
 * `deadline` : replace elevator scheduler
 * `noop` : simplest schduler using  queue
 * Anticipatory : is replaced by CFQ
