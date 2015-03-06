@@ -1,7 +1,6 @@
 ## IO Scheduler
 
-The responsibility of IO Scheduler is to schedule pending IO requests (read or write) "efficiently" with respect to 
-physical characteristics of block devices (usually hard disk). The term schedule in this context means ordering and merging requests. IO Scheduler has to balance between latency with throughput.
+The responsibility of IO Scheduler is to schedule pending IO requests (read or write) against block devices (usually hard disk) "efficiently" with respect to physical characteristics of the devices. The term schedule in this context means ordering ,merging requests and decide which one is going to device first. IO Scheduler has to balance between latency with throughput.
 
 Typical IO scheduler are
 
