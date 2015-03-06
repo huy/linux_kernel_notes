@@ -33,3 +33,5 @@ Noop uses simple FIFO queue to merges and serves requests, no reordering based o
 **References**
 
 * http://www.linuxjournal.com/article/6931?page=0,1
+* http://en.wikipedia.org/wiki/Noop_scheduler
+* http://en.wikipedia.org/wiki/Deadline_scheduler
