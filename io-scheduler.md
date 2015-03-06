@@ -36,6 +36,7 @@ Anticipatory scheduler tries to idle for short period (e.g. few ms) to anticipat
 
 **References**
 
-* http://www.linuxjournal.com/article/6931?page=0,1
 * http://en.wikipedia.org/wiki/Noop_scheduler
 * http://en.wikipedia.org/wiki/Deadline_scheduler
+* http://en.wikipedia.org/wiki/Anticipatory_scheduling
+* http://www.linuxjournal.com/article/6931?page=0,1
