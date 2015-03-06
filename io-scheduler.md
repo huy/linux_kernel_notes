@@ -20,7 +20,7 @@ IO Scheduler is specified in `[]` for each block device
 
 **Elevator**
 
-It sort requests by block number maintaining queue of sorted requests and serves requests as elevator maximizing throughput . When new requests with lower block number are constantly inserted in the head of the queue causes starvation of a request at the end of the queue
+It sort requests by sector's number maintaining queue of sorted requests and serves requests as elevator maximizing throughput. When new requests with lower sector's number are constantly inserted in the head of the queue causes starvation of a request at the end of the queue
 
 **Deadline**
 
@@ -28,7 +28,7 @@ In addition to queue of requets sorted by block number, it maintains 2 deadline 
 
 **noop**
 
-Noop uses simple FIFO queue to merges and serves requests, no reordering based on sector number is performed. It assumes that OS has no productive way to optimize request order.
+Noop uses simple FIFO queue to merges and serves requests, no reordering based on sector number is performed. It assumes that OS has no productive way to optimize request order due to lack of information about physical devices or seek time doesn't depend on sector number. Example are SSD disk, Network Attached Storage.
 
 **References**
 
