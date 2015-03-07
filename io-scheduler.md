@@ -36,7 +36,7 @@ Anticipatory scheduler tries to idle for short period (e.g. few ms) after a read
 
 **CFQ**
 
-Maintains queue for synchronous requests per process. It allocate timeslice (based on IO priority of a process) for each queue to access disk. Asynchronous requests for all processes are batched together in fewer queues, one per priority. 
+Maintains queue for synchronous requests per process. It allocates timeslice (based on IO priority of a process) for each queue to access disk. Asynchronous requests for all processes are batched together in fewer queues, one per priority. 
 
 CFQ IO scheduler works in similar way as CPU scheduler. The detail is mentioned in [http://en.wikipedia.org/wiki/Completely_Fair_Scheduler], it prevent both starving and hogging. 
 
