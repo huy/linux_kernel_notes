@@ -6,7 +6,7 @@ Process scheduler find the next eligible task and switch to the context of that 
 
 There are mutiple schedulers, each is responsible for a type of tasks. 
 
-   stop_sched_class → rt_sched_class → fair_sched_class → idle_sched_class 
+    stop_sched_class → rt_sched_class → fair_sched_class → idle_sched_class 
 
 * `stop_sched_class` is for kernel tasks that load balances other tasks among CPU. 
 * `rt_sched_class` is for real time tasks.
