@@ -24,6 +24,14 @@ The realtime scheduling has following policies
 * `SCHED_FIFO`: fifo scheduling
 * `SCHED_RR`: round robind scheduling
 
+Scheduler class assigned to a process can be viewed using `class` field in `ps -o` command
+ 
+    root@0458bfaabb2a:~# ps -e -o pid,cmd,class
+    PID CMD                         CLS
+    1 /bin/bash -c /usr/sbin/rsys TS
+    6 /usr/sbin/rsyslogd          TS
+
+
 **CFS**
 
 Linux kernel from version 2.6.23 use Comppletly Faire Scheduler - CFS for process scheduling see [http://en.wikipedia.org/wiki/Completely_Fair_Scheduler].
