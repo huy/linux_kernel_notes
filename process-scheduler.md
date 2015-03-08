@@ -8,7 +8,8 @@ There are mutiple schedulers, each is responsible for a type of tasks.
 
     stop_sched_class → rt_sched_class → fair_sched_class → idle_sched_class 
 
-* `stop_sched_class` is for kernel tasks that load balances other tasks among CPU. 
+* `stop_sched_class` is for kernel tasks that load balances other tasks among CPU. It seems that there is only `cpu_stopper_task` belongs to this category.
+ 
 * `rt_sched_class` is for real time tasks.
 * `fair_sched_class` is for ordinary tasks. Most of tasks are of this type
 * `ide_sched_class` is for lowest priority tasks that only run when there are no other runable tasks.
