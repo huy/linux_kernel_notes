@@ -30,10 +30,18 @@ The realtime scheduling has following policies
 Scheduler class assigned to a process can be viewed using `class` field in `ps -o` command
  
     root@0458bfaabb2a:~# ps -e -o pid,cmd,class
-    PID CMD                         CLS
+    PID CMD                       CLS
     1 /bin/bash -c /usr/sbin/rsys TS
     6 /usr/sbin/rsyslogd          TS
 
+where 
+
+    TS  SCHED_OTHER
+    FF  SCHED_FIFO
+    RR  SCHED_RR
+    B   SCHED_BATCH
+    ISO SCHED_ISO
+    IDL SCHED_IDLE
 
 **CFS**
 
