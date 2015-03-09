@@ -2,6 +2,8 @@
 
 Process scheduler find the next eligible task and switch to the context of that task. It has to balance between responsiveness and efficency. The cost of context switch is not negligible. The option for tuning in case of `CSF` is `/proc/sys/kernel/sched_min_granularity_ns`  and `/proc/sys/kernel/sched_latency_ns`.
 
+Scheduler maintains per CPU run queue and picks next task for particular CPU from its run queue.
+
 **Scheduluer and policy**
 
 There are mutiple schedulers, each is responsible for a type of tasks. 
@@ -36,8 +38,6 @@ Scheduler class assigned to a process can be viewed using `class` field in `ps -
 **CFS**
 
 Linux kernel from version 2.6.23 use Comppletly Faire Scheduler - CFS for process scheduling see [http://en.wikipedia.org/wiki/Completely_Fair_Scheduler].
-
-Scheduler maintains per CPU run queue. CFS picks next task for particular CPU from its run queue.
 
 **References**
 
