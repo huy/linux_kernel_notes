@@ -36,7 +36,7 @@ Anticipatory scheduler tries to idle for short period (e.g. few ms) after a read
 
 **CFQ**
 
-Maintains queue for synchronous requests per process. It allocates timeslice (based on IO priority of a process) for each queue to access disk. The I/O scheduler visits each queue in a round-robin fashion, servicing requests from the queue until the queue's timeslice is exhausted, or until no more requests remain. In the latter case, the CFQ I/O Scheduler will then sit idle for a brief period specified by`slice_idle` — by default, 10 ms—waiting for a new request on the queue. If the anticipation pays off, the I/O scheduler avoids seeking. If not, the waiting was in vain, and the scheduler moves on to the next process' queue.
+Maintains queue for synchronous requests per process. It allocates timeslice (based on IO priority of a process, which is set by `ioprio_set`) for each queue to access disk. The I/O scheduler visits each queue in a round-robin fashion, servicing requests from the queue until the queue's timeslice is exhausted, or until no more requests remain. In the latter case, the CFQ I/O Scheduler will then sit idle for a brief period specified by`slice_idle` — by default, 10 ms—waiting for a new request on the queue. If the anticipation pays off, the I/O scheduler avoids seeking. If not, the waiting was in vain, and the scheduler moves on to the next process' queue.
 
 Asynchronous requests for all processes are batched together in fewer queues, one per priority. 
 
