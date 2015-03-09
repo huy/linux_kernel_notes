@@ -16,9 +16,9 @@ There are mutiple schedulers, each is responsible for a type of tasks.
 
 Linux provide syscall for assign a process to a specific scheduler policy `sched_setscheduler`. The following are policies applicable for non realtime scheduling
 
-* `SCHED_OTHER`: the standard round-robin time-sharing policy;
-* `SCHED_BATCH`: for "batch" style execution of processes; and
-* `SCHED_IDLE`: for running very low priority background jobs
+* `SCHED_OTHER`: the standard round-robin time-sharing policy, this is served by `fair_sched_class`
+* `SCHED_BATCH`: for "batch" style execution of processes, this is served by `fair_sched_class`
+* `SCHED_IDLE`: for running very low priority background jobs, this is served by `idle_sched_class`
 
 The realtime scheduling has following policies
 
