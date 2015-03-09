@@ -5,16 +5,16 @@ User preemption can occur
 1. When returning to user-space from a system call
 2. When returning to user-space from an interrupt handler
 
-the kernel provides the need_resched  flag (one bit in thread_info.flags) to signify whether a reschedule 
-should be performed. This flag is set by scheduler_tick() when a process should be preempted, and by 
-try_to_wake_up() when a process that has a higher priority than the currently running process is awakened.
+the kernel provides the `need_resched`  flag (one bit in thread_info.flags) to signify whether a reschedule 
+should be performed. This flag is set by `scheduler_tick()` when a process should be preempted, and by 
+`try_to_wake_up()` when a process that has a higher priority than the currently running process is awakened.
 
     static inline int need_resched(void)
     {
        return unlikely(test_thread_flag(TIF_NEED_RESCHED));
     }
 
-Upon returning to user-space or returning from an interrupt, the need_resched flag is checked. If it is set, 
+Upon returning to user-space or returning from an interrupt, the `need_resched` flag is checked. If it is set, 
 the kernel invokes the scheduler before continuing.
 
 The flag is per-process, and not simply global, because it is faster to access a value in the process 
