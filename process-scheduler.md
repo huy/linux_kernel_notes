@@ -2,7 +2,7 @@
 
 Process scheduler find the next eligible task and switch to the context of that task. It has to balance between responsiveness and efficency. The cost of context switch is not negligible. The option for tuning in case of `CSF` is `/proc/sys/kernel/sched_min_granularity_ns`  and `/proc/sys/kernel/sched_latency_ns`.
 
-Scheduler maintains per CPU run queue and picks next task for particular CPU from its run queue.
+Scheduler maintains per CPU run queue and picks next task for particular CPU from its run queue. When a task call `scheduler()` function, the scheduler code process run queue associated with the CPU of the calling task.
 
 **Scheduluer and policy**
 
