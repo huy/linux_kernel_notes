@@ -15,7 +15,7 @@ should be performed. This flag is set by `scheduler_tick()` when a process shoul
     }
 
 Upon returning to user-space or returning from an interrupt, the `need_resched` flag is checked. If it is set, 
-the kernel invokes the scheduler before continuing.
+the kernel invokes the `schedule()` which may result in switching context to other task (i.e. other task runs on CPU).
 
 The flag is per-process, and not simply global, because it is faster to access a value in the process 
 descriptor (because of the speed of current and high probability of it being cache hot) than a global variable.
