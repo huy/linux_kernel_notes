@@ -49,3 +49,4 @@ CFQ IO scheduler works in similar way as CPU scheduler. The detail is mentioned 
 * http://en.wikipedia.org/wiki/Anticipatory_scheduling
 * http://en.wikipedia.org/wiki/CFQ
 * http://man7.org/linux/man-pages/man2/ioprio_set.2.html
+* http://dom.as/2014/03/31/mongo-io/
