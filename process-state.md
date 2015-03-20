@@ -35,4 +35,6 @@ The CPU is not used but can't be reused to run other tasks because kernel either
 its data structure is not protected. It is a sign of deficiency of certain parts of the kernel and 
 should be avoided as much as possible.
 
+References
 
+* http://stackoverflow.com/questions/223644/what-is-an-uninterruptable-process
