@@ -30,7 +30,7 @@ The most interesting is uninterruptible sleep `D`, which can be watched using
 
       $while true; do date; ps auxf | awk '{if($8=="D") print $0;}'; sleep 1; done
       
-Process in in uninterruptible sleep, means that it runs in kernel mode and can't be preempted (see [Preemption.md]). 
+Process in in uninterruptible sleep, means that it runs in kernel mode and can't be preempted (see [preemption.md]). 
 The CPU is not used but can't be reused to run other tasks because kernel either is holding lock or 
 its data structure is not protected. It is a sign of deficiency of certain parts of the kernel and 
 should be avoided as much as possible.
