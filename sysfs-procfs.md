@@ -1,7 +1,7 @@
 ## Overview
 
-In general `procfs` export kernel information of processess while `sysfs` export information about devices. However `procfs` 
-also export kernel subsystem information not related to proceses, which make `procfs` procfs cluttered with lots of non-process information. These should be replaced by  `sysfs`.
+In general `procfs` export kernel information of processess while `sysfs` export information about devices and other kernel objects. 
+However `procfs` also export kernel subsystem information not related to proceses, which make `procfs` procfs cluttered with lots of non-process information. These should be replaced by  `sysfs`.
 
 e.g.
 
