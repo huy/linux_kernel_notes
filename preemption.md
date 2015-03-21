@@ -1,4 +1,6 @@
-## User preemption
+## Preemption
+
+**User preemption**
 
 User preemption can occur
 
@@ -34,7 +36,7 @@ task_struct. In 2.6, it was moved into a single bit of a special flag variable i
      flags = 128,
     ...
 
-## Kernel Preemption
+**Kernel Preemption**
 
 
 Non preemptive kernel does not switch a task when it is in kernel mode.  Task context switch only happens when the task
