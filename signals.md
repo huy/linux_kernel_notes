@@ -2,9 +2,7 @@
 
 Signal is used to notify a process about external events (page fault, interrupt from keyboard) . Except real time signals, normal signals are not queued, kernel keep track of pending  signal for each process as bit mask. Also no other data is associated with signal.
 
-Except KILL and STOP, signals can be blocked, default signal handlers can be ignored and overwritten.
-
-Signals can be generated in program using kill, tkill, send_sig
+Except KILL and STOP, signals can be blocked, default signal handlers can be ignored and overwritten. Signals can be generated in program using kill, tkill, send_sig.
 
 To suspend a process run e.g.
 
@@ -18,4 +16,7 @@ To resume the suspended process run
 
     kill -SIGCONT 3878
 
-The default signal sent out by `kill` is `TERM` mean terminate the process. Each process react to each signal differently, Java process e.g. dump stacktrace of all threads to stdout unpon receiving `QUIT`.  
+The default signal sent out by `kill` is `TERM` mean terminate the process. Each process reacts to each signal differently, Java process e.g. dump stacktrace of all threads to stdout unpon receiving `QUIT`.  
+
+When sending a signal to a running process (on CPU), the signal is pending until the process is preempted, at that time the signal is delivered to the process and signal handler is called.
+When sending a signal to a waiting in `interupptible` state process, the process is waked up, the signal is delivered to the process and signal handler is called.
