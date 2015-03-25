@@ -8,7 +8,7 @@ The linux kernel provide a set of syscall(s) that is utilized by container's too
 
 These syscal are of two groups
 
-* namespace: which prevent collision in using named resources e.g. process id, ipc, network port, filesystem, hostname
+* [namespace](http://man7.org/linux/man-pages/man7/namespaces.7.html): which prevent collision in using named resources e.g. process id, ipc, network port, filesystem, hostname
 * cgroups: allocate physical resources (cpu, memory, io) to each container
 
 **Docker**
