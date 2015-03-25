@@ -1,7 +1,6 @@
 ## Linux container
 
-The concept container in linux refers to isolated light weight OS environment for running processes. It appears to process as 
-complete OS with root filesystem, network, hostname, etc..
+The concept container in linux refers to isolated light weight OS environment for running processes. A container appears as a complete OS (with root filesystem, network, hostname) dedicated to a process.
 
 The linux kernel provide basic primitive enabling the creation of container, namely
 
