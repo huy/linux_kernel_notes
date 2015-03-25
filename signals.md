@@ -18,6 +18,6 @@ To resume the suspended process run
 
 The default signal sent out by `kill` is `TERM` mean terminate the process. Each process reacts to each signal differently, Java process e.g. dump stacktrace of all threads to stdout unpon receiving `QUIT`.  
 
-When sending a signal to a running process (on CPU), the signal is pending until the process is preempted, at that time the signal is delivered to the process and signal handler is called.
+When sending a signal to a running process (on CPU), the signal is pending until the process is preempted, at that time the signal is delivered to the process and a signal handler is called.
 
-When sending a signal to a waiting in `interupptible` state process, the process is waked up, the signal is delivered to the process and signal handler is called.
+When sending a signal to a waiting in `interupptible` state process, the process is waked up, the signal is delivered to the process and signal a handler is called.
