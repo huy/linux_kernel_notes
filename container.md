@@ -13,7 +13,7 @@ These syscal are of two groups
 
 **Docker**
 
-Docker is set of tools enabling creation and management of container. Docker is written in golang and uses libcontainer for accessing linux kernel above syscall(s).
+Docker is set of tools an infrastructure enabling creation and management of container. Docker is written in golang and uses libcontainer (the previous version used lxc) for accessing linux kernel above syscall(s).
 
 References
 
