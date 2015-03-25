@@ -19,3 +19,4 @@ References
 
 * http://blog.dotcloud.com/under-the-hood-linux-kernels-on-dotcloud-part
 * http://blog.dotcloud.com/kernel-secrets-from-the-paas-garage-part-24-c
+* http://www.zdnet.com/article/docker-libcontainer-unifies-linux-container-powers/
