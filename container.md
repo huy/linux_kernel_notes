@@ -1,6 +1,6 @@
 ## Process container
 
-The concept process container in linux refers to isolated light weight OS environment for running processes. A process container appears as a complete OS (with root filesystem, network, hostname) dedicated to a process. 
+The concept process container in linux refers to isolated light weight OS environment for running processes (also called OS level virtualization). A process container appears as a complete OS (with root filesystem, network, hostname) dedicated to a process. 
 
 Comparing to virtual machine, process container (including lxc, docker, rocket) provides reasonable good isolated environment at much cheaper cost (in term time and resource).
 
