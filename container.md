@@ -4,12 +4,12 @@ The concept container in linux refers to isolated light weight OS environment fo
 
 Comparing to virtual machine, Linux container (including lxc, docker, rocket) provides reasonable good isolated environment at much cheaper cost (in term time and resource).
 
-The linux kernel provide a set of syscall(s) that is utilized by container's tools to create and manage of containers.
+The linux kernel provide features utilized by container's tools to create and manage of containers.
 
-These syscal are of two groups
+These are
 
-* [namespace](http://man7.org/linux/man-pages/man7/namespaces.7.html): which prevent collision in using named resources e.g. process id, ipc, network port, filesystem, hostname
-* cgroups: allocate physical resources (cpu, memory, io) to each container
+* [namespace related syscall](http://man7.org/linux/man-pages/man7/namespaces.7.html): which prevent collision in using named resources e.g. process id, ipc, network port, filesystem, hostname
+* [resource management cgroups](http://en.wikipedia.org/wiki/Cgroups): allocate physical resources (cpu, memory, io) to each container
 
 **Docker**
 
