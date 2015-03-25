@@ -5,8 +5,8 @@ complete OS with root filesystem, network, hostname, etc..
 
 The linux kernel provide basic primitive enabling the creation of container, namely
 
-* namespace
-* cgroups
+* namespace: which prevent collision in using named resources e.g. process id, ipc, network port, filesystem, hostname
+* cgroups: allocate physical resources (cpu, memory, io) to each container
 
 References
 
