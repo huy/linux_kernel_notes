@@ -15,7 +15,7 @@ These are
 
 Docker is set of tools an infrastructure enabling creation and management of container. Docker is written in golang and uses libcontainer (the previous version used lxc) for accessing linux kernel above syscall(s).
 
-References
+**References**
 
 * http://blog.dotcloud.com/under-the-hood-linux-kernels-on-dotcloud-part
 * http://blog.dotcloud.com/kernel-secrets-from-the-paas-garage-part-24-c
