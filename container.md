@@ -11,7 +11,9 @@ These syscal are of two groups
 * namespace: which prevent collision in using named resources e.g. process id, ipc, network port, filesystem, hostname
 * cgroups: allocate physical resources (cpu, memory, io) to each container
 
-**docker**
+**Docker**
+
+Docker is set of tools enabling creation and management of container. Docker is written in golang and uses libcontainer for accessing linux kernel above syscall(s).
 
 References
 
