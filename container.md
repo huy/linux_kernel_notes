@@ -8,7 +8,7 @@ The linux kernel provide features utilized by container's tools to create and ma
 
 These are
 
-* [namespace related syscall](http://man7.org/linux/man-pages/man7/namespaces.7.html): which prevent collision in using named resources e.g. process id, ipc, network port, filesystem, hostname
+* [namespace related syscalls](http://man7.org/linux/man-pages/man7/namespaces.7.html): which prevent collision in using named resources e.g. process id, ipc, network port, filesystem, hostname
 * [resource management cgroups](http://en.wikipedia.org/wiki/Cgroups): allocate physical resources (cpu, memory, io) to each container
 
 **Docker**
