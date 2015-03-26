@@ -41,17 +41,13 @@ Scheduler class assigned to a process can be viewed using `class` field in `ps -
     1 /sbin/init                  TS
     2 [kthreadd]                  TS
     ...
-    6 [migration/0]               FF
     7 [watchdog/0]                FF
 
 where 
 
-    TS  SCHED_OTHER
-    FF  SCHED_FIFO
-    RR  SCHED_RR
-    B   SCHED_BATCH
-    ISO SCHED_ISO
-    IDL SCHED_IDLE
+    TS  SCHED_OTHER    B   SCHED_BATCH
+    FF  SCHED_FIFO     ISO SCHED_ISO
+    RR  SCHED_RR       IDL SCHED_IDLE
 
 We can change scheduler class using command `chrt`
 
