@@ -58,6 +58,14 @@ We can change scheduler class using command `chrt`
     PID CMD                         CLS PRI
     1003 cron                        B    20
 
+ `chrt` can'nt change priority for non realtime scheduler's class. We need to use `renice`
+
+    # renice 5 -p 1003
+    1003 (process ID) old priority 10, new priority 5
+    # ps -o pid,cmd,class,priority,nice -p 1003
+    PID CMD                         CLS PRI  NI
+    1003 cron                        B    25   5
+
 **CFS**
 
 Linux kernel from version 2.6.23 use Comppletly Faire Scheduler - CFS for process scheduling see [http://en.wikipedia.org/wiki/Completely_Fair_Scheduler].
