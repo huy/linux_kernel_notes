@@ -65,7 +65,7 @@ Linux kernel from version 2.6.23 use Comppletly Faire Scheduler - CFS for proces
 
 `CFS` maintains per-task `vruntime`. As task is on CPU, this value get increased by time spending on CPU. The scheduler function check and pick task with minimum `vruntime` and assign CPU to it.
 
-`prioprity` (i.e `nice`) is used as weight when adjusting `vruntime`.
+`priority` (i.e `nice`) is used as weight when adjusting `vruntime`.
 
 **References**
 
