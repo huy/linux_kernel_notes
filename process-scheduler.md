@@ -18,7 +18,6 @@ There are mutiple schedulers, each is responsible for a type of tasks.
     stop_sched_class → rt_sched_class → fair_sched_class → idle_sched_class 
 
 * `stop_sched_class` is for kernel tasks that add/remove CPUs dynamically. 
- 
 * `rt_sched_class` is for real time tasks.
 * `fair_sched_class` is for ordinary tasks. Most of tasks are of this type
 * `ide_sched_class` is for lowest priority tasks that only run when there are no other runable tasks.
@@ -37,7 +36,7 @@ The realtime scheduling has following policies
 Scheduler class assigned to a process can be viewed using `class` field in `ps -o` command
  
     # ps -e -o pid,cmd,class 
-    PID CMD                         CLS
+    PID CMD                       CLS
     1 /sbin/init                  TS
     2 [kthreadd]                  TS
     ...
