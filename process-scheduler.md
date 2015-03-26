@@ -53,6 +53,16 @@ where
     ISO SCHED_ISO
     IDL SCHED_IDLE
 
+We can change scheduler class using command `chrt`
+
+    # ps -o pid,cmd,class,priority -p 1003
+    PID CMD                         CLS PRI
+    1003 cron                        TS   20
+    # chrt -p -b 0 1003
+    # ps -o pid,cmd,class,priority -p 1003
+    PID CMD                         CLS PRI
+    1003 cron                        B    20
+
 **CFS**
 
 Linux kernel from version 2.6.23 use Comppletly Faire Scheduler - CFS for process scheduling see [http://en.wikipedia.org/wiki/Completely_Fair_Scheduler].
