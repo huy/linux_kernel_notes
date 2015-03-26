@@ -1,6 +1,8 @@
 ## Process's scheduler
 
-Process scheduler find the next eligible task and switch to the context of that task. It has to balance between responsiveness and efficency. The cost of context switch is not negligible. The option for tuning in case of `CFS` is `/proc/sys/kernel/sched_min_granularity_ns`  and `/proc/sys/kernel/sched_latency_ns`.
+Process scheduler find the next eligible task and switch to the context of that task. It has to balance between responsiveness and efficency. The cost of context switch is not negligible. 
+
+The option for tuning in case of `CFS` is `/proc/sys/kernel/sched_min_granularity_ns`  and `/proc/sys/kernel/sched_latency_ns`.
 
     # cat /proc/sys/kernel/sched_min_granularity_ns
     750000
@@ -55,6 +57,11 @@ where
 
 Linux kernel from version 2.6.23 use Comppletly Faire Scheduler - CFS for process scheduling see [http://en.wikipedia.org/wiki/Completely_Fair_Scheduler].
 
+`CFS` maintains per-task `vruntime`. As task is on CPU, this value get increased by time spending on CPU. The scheduler function check and pick task with minimum `vruntime` and assign CPU to it.
+
+`prioprity` (i.e `nice`) is used as weight when adjusting `vruntime`.
+
 **References**
 
 * http://www.linuxjournal.com/magazine/completely-fair-scheduler
+* https://www.kernel.org/doc/Documentation/scheduler/sched-design-CFS.txt
