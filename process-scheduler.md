@@ -1,6 +1,6 @@
 ## Process's scheduler
 
-Process scheduler find the next eligible task and switch to the context of that task. It has to balance between responsiveness and efficency. The cost of context switch is not negligible. 
+Process scheduler is responsible for finding the next eligible task and switching to the context of that task. It has to balance between responsiveness and efficency. The cost of context switch is not negligible. 
 
 The option for tuning in case of `CFS` is `/proc/sys/kernel/sched_min_granularity_ns`  and `/proc/sys/kernel/sched_latency_ns`.
 
