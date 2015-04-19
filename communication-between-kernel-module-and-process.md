@@ -1,11 +1,15 @@
 ## Communication between kernel module and user process
 
+**Driver**
+
 Driver is installed in kernel. In order for process in userspace to access it, we need to create special device file with major
 number in file system. The driver module in turn register file system functions with the major number.
 
     result = register_chrdev(memory_major, "memory", &memory_fops);
 
 The result is pseudo file `/proc/devices/memory` . `udev` then create corresponding device file traditional `/dev/memory` 
+
+**procfs file**
 
 Other way is to register using proc filesystem
 
