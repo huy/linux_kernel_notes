@@ -5,3 +5,4 @@ udev dynamically create inode by default in `/dev/` for hotplug devices. udev ru
 **references**
 
 * https://www.linux.com/news/hardware/peripherals/180950-udev
+* https://www.kernel.org/doc/pending/hotplug.txt
