@@ -23,4 +23,6 @@ References
 
 * http://people.ee.ethz.ch/~arkeller/linux/multi/kernel_user_space_howto-2.html
 * https://www.kernel.org/doc/Documentation/filesystems/sysfs.txt
+* https://lwn.net/Articles/51437/
 * https://www.kernel.org/doc/Documentation/filesystems/proc.txt
+
