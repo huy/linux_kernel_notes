@@ -24,6 +24,10 @@ view trace
             bash-8329  [000] d... 80604.787465: account_system_time <-__vtime_account_system
             bash-8329  [000] d... 80604.787466: cpuacct_account_field <-account_system_time
 
+disable trace
+
+    # echo nop > current_tracer
+
 **References**
 
 * http://lwn.net/Articles/365835/
