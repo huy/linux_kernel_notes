@@ -21,3 +21,9 @@ With the knowledge if syscall we can ask strace to trace only specified syscalls
 strace predefine a few groups of syscalls such as `file`, `process`, `network`, `rpc`
 
     strace -f -p 17549 -s 128 -e trace=file
+
+However, sometimes knowning sequence of syscalls is more important than a particular one when troubleshooting.
+
+**References**
+
+* http://linux.die.net/man/1/strace
