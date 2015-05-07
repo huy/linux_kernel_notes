@@ -13,6 +13,9 @@ Ftrace is kernel built in feature that enables tracing kernel function calls.
      # cat current_tracer
      nop
  
+ enable function trace
+ 
+      # echo function > current_tracer
  
 
 **References**
