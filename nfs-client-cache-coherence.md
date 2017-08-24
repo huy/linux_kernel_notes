@@ -9,7 +9,7 @@ Enable cache make thing faster so by default NFS file system is mounted with cac
 
 A client create a new file, close it and tell other client the file name (by some other mean). The other one may see that file or may not but if it see the file and read it then it will get a complete file. It is pretty good behavior.
 
-NFS v3 client achieves it by flushing data + meta data cache when closing file. The reader will access the meta data of the file then will invalidate any data cache when it seens that the medata has been changed (perhaps by looking at date modified). 
+NFS v3 client achieves it by flushing data + meta data cache when closing file. The reader will access the meta data of the file on NFS server to get most upto date one then will invalidate any data cache when it seens that the medata has been changed (perhaps by looking at date modified). 
 
 **References**
 
