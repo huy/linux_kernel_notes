@@ -7,3 +7,9 @@ Enable cache make thing faster so by default NFS file system is mounted with cac
 
 However meta data cache is different story, with meta data cache enabled if one client create a new file, close it and tell other the file name by some other mean. The other one may see that file or may not but if it see the file and read it then it will get a complete file. It is pretty good behavior.
 
+NFS from v3 achieves it by flushing write data cache when closing file and invalidate any read data cache when medata has been changed (perhaps by looking at date modified).
+
+**References**
+
+* https://www.avidandrew.com/understanding-nfs-caching.html
+* http://nfs.sourceforge.net/
